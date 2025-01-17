@@ -1,0 +1,124 @@
+.perspective-1000 {
+    perspective: 1500px;
+}
+
+.laptop-wrapper {
+    padding: 4rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.laptop {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    transform: rotateX(70deg) rotateZ(-35deg) translate3d(0, 0, -100px);
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.laptop:hover {
+    transform: rotateX(65deg) rotateZ(-35deg) translate3d(0, -30px, -100px);
+}
+
+.laptop-screen {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 62.5%;
+    background: #f0f0f0;
+    border-radius: 20px;
+    transform-origin: bottom;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 0 6px #e2e2e2,
+                0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.laptop-screen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.3) 20%,
+        rgba(255, 255, 255, 0.3) 40%,
+        transparent 40%
+    );
+    pointer-events: none;
+}
+
+.laptop-display {
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    right: 4%;
+    bottom: 4%;
+    background: #ffffff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.laptop-display img {
+    animation: fadeScale 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.laptop-base {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    padding-bottom: 7%;
+    background: linear-gradient(to bottom, #e2e2e2, #d1d1d1);
+    transform: rotateX(-90deg);
+    transform-origin: top;
+    bottom: -7%;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.laptop-base::after {
+    content: '';
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    top: 30%;
+    left: 35%;
+    background: #e8e8e8;
+    border-radius: 20px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeScale {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Add smooth hover transition for the entire laptop section */
+.project-item {
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.project-item:hover {
+    transform: translateY(-10px);
+}
