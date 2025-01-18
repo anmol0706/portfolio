@@ -15,30 +15,98 @@
   width: 100%;
   transform-style: preserve-3d;
   position: relative;
+  transform: rotateX(5deg);
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: rotateX(5deg) translateY(0px); }
+  50% { transform: rotateX(5deg) translateY(-15px); }
 }
 
 .laptop-screen {
   width: 100%;
   aspect-ratio: 16/10;
   background: #000;
-  border-radius: 10px;
+  border-radius: 8px;
   transform-origin: bottom;
-  transform: rotateX(5deg);
+  transform: rotateX(10deg);
   padding: 2%;
-  box-shadow: 0 0 0 2px #262626;
+  box-shadow: 
+    0 0 0 2px #262626,
+    0 20px 50px rgba(0, 0, 0, 0.3);
+  transition: transform 0.7s ease-out;
 }
 
 .laptop-display {
   background: #fff;
   width: 100%;
   height: 100%;
+  border-radius: 4px;
+  position: relative;
   overflow: hidden;
-  border-radius: 5px;
+}
+
+.screen-glare {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.03) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  pointer-events: none;
+}
+
+.continuous-glare {
+  animation: continuousGlare 4s linear infinite;
+}
+
+@keyframes continuousGlare {
+  0% { transform: translateX(-100%) translateY(-100%); }
+  100% { transform: translateX(100%) translateY(100%); }
+}
+
+.glare-animation {
+  animation: glareEffect 2s ease-in-out infinite;
+}
+
+@keyframes glareEffect {
+  0% { transform: translate(-100%, -100%) rotate(0deg); }
+  100% { transform: translate(100%, 100%) rotate(45deg); }
+}
+
+.laptop-base {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(to bottom, #333, #262626);
+  transform-origin: top;
+  transform: rotateX(-90deg) translateZ(10px);
+  border-radius: 0 0 8px 8px;
+}
+
+.laptop-trackpad {
+  position: absolute;
+  width: 30%;
+  height: 4px;
+  background: #333;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 2px;
 }
 
 /* Add dark mode styles */
 :is(.dark) .laptop-screen {
-  box-shadow: 0 0 0 2px #404040;
+  box-shadow: 
+    0 0 0 2px #404040,
+    0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 :is(.dark) .laptop-display {
@@ -49,15 +117,8 @@
   background: linear-gradient(to bottom, #404040, #333333);
 }
 
-.laptop-base {
-  position: absolute;
-  width: 100%;
-  height: 20px;
-  bottom: -20px;
-  background: linear-gradient(to bottom, #262626, #1a1a1a);
-  transform-origin: top;
-  transform: rotateX(-90deg);
-  border-radius: 0 0 10px 10px;
+.dark .laptop-trackpad {
+  background: #555;
 }
 
 .preserve-3d {
@@ -87,6 +148,53 @@
     }
 }
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 1s ease-in-out;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s infinite;
+}
+
 .animate-fadeIn {
     animation: fadeIn 1s ease-out;
+}
+
+.rotate-y-3 {
+  transform: rotateY(3deg);
+}
+
+/* Add these styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
 }

@@ -32,38 +32,53 @@ const About = () => {
                     {/* Left Side - 3D Smartphone with Slideshow */}
                     <div className="md:w-1/3">
                         <div className="sticky top-8">
-                            <div className="smartphone-container perspective-[1000px] hover:rotate-y-[-15deg] transition-transform duration-500">
-                                <div className="smartphone relative w-full aspect-[9/16] bg-black rounded-[3rem] p-3
-                                            shadow-xl transform rotate-y-[15deg] preserve-3d">
-                                    {/* Phone Frame */}
-                                    <div className="absolute inset-0 border-[3px] border-gray-600 rounded-[3rem]"></div>
-                                    {/* Notch */}
-                                    <div className="absolute top-3 left-1/2 -translate-x-1/2 w-1/3 h-7 bg-black rounded-b-3xl"></div>
-                                    {/* Screen Content with Slideshow */}
-                                    <div className="w-full h-full rounded-[2.5rem] overflow-hidden bg-white relative">
+                            <div className="smartphone-container perspective-[2000px] hover:rotate-y-[-20deg] transition-transform duration-700">
+                                <div className="smartphone relative w-full aspect-[9/16] bg-gray-900 rounded-[3rem] p-3
+                                            shadow-[0_10px_40px_rgba(0,0,0,0.2)] transform rotate-y-[20deg] preserve-3d
+                                            ring-1 ring-gray-800">
+                                    {/* Phone Frame with improved detail */}
+                                    <div className="absolute inset-0 border-[3px] border-gray-800 rounded-[3rem]
+                                                  shadow-inner bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900"></div>
+                                    {/* Power Button */}
+                                    <div className="absolute right-[-4px] top-20 w-[3px] h-12 bg-gray-800 rounded-r-lg shadow-lg"></div>
+                                    {/* Volume Buttons */}
+                                    <div className="absolute left-[-4px] top-20 w-[3px] h-8 bg-gray-800 rounded-l-lg shadow-lg"></div>
+                                    <div className="absolute left-[-4px] top-32 w-[3px] h-8 bg-gray-800 rounded-l-lg shadow-lg"></div>
+                                    {/* Notch with improved design */}
+                                    <div className="absolute top-2 left-1/2 -translate-x-1/2 w-[40%] h-12 bg-black rounded-b-3xl
+                                                  flex items-center justify-center gap-3 px-3 shadow-inner">
+                                        {/* Camera */}
+                                        <div className="relative w-4 h-4">
+                                            <div className="absolute inset-0 bg-black rounded-full ring-1 ring-gray-700"></div>
+                                            <div className="absolute inset-[3px] bg-gray-900 rounded-full"></div>
+                                            <div className="absolute top-[4px] left-[4px] w-1.5 h-1.5 bg-blue-400 rounded-full opacity-60"></div>
+                                        </div>
+                                        {/* Speaker */}
+                                        <div className="w-16 h-2 bg-black rounded-full ring-1 ring-gray-700 shadow-inner"></div>
+                                        {/* Sensor */}
+                                        <div className="relative w-3 h-3">
+                                            <div className="absolute inset-0 bg-black rounded-full ring-1 ring-gray-700"></div>
+                                            <div className="absolute inset-[3px] bg-red-500/20 rounded-full animate-pulse"></div>
+                                        </div>
+                                    </div>
+                                    {/* Screen Content with improved clarity */}
+                                    <div className="w-full h-full rounded-[2.5rem] overflow-hidden bg-white relative
+                                                  shadow-inner">
                                         {images.map((img, index) => (
                                             <img
                                                 key={index}
                                                 src={img}
                                                 alt={`Profile ${index + 1}`}
                                                 className={`absolute w-full h-full object-cover transition-opacity duration-500 ${
-                                                    currentSlide === index ? 'opacity-100' : 'opacity-0'
+                                                    currentSlide === index 
+                                                        ? 'opacity-100' 
+                                                        : 'opacity-0'
                                                 }`}
+                                                style={{ imageRendering: 'crisp-edges' }}
                                             />
                                         ))}
-                                        {/* Slide Indicators */}
-                                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                                            {images.map((_, index) => (
-                                                <div
-                                                    key={index}
-                                                    className={`w-2 h-2 rounded-full ${
-                                                        currentSlide === index 
-                                                            ? 'bg-white' 
-                                                            : 'bg-white/50'
-                                                    }`}
-                                                />
-                                            ))}
-                                        </div>
+                                        {/* Minimal Screen Overlay */}
+                                        <div className="absolute inset-0 shadow-inner pointer-events-none rounded-[2.5rem]"></div>
                                     </div>
                                 </div>
                             </div>

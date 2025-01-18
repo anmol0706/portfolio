@@ -10,6 +10,8 @@ const skillCategories = {
       { name: "CSS", level: 85, color: "from-blue-400 to-blue-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
       { name: "JavaScript", level: 80, color: "from-yellow-400 to-yellow-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
       { name: "React", level: 75, color: "from-cyan-400 to-cyan-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "TypeScript", level: 70, color: "from-blue-400 to-blue-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "Tailwind CSS", level: 85, color: "from-teal-400 to-teal-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" },
     ]
   },
   backend: {
@@ -18,6 +20,14 @@ const skillCategories = {
       { name: "Node.js", level: 70, color: "from-green-400 to-green-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
       { name: "Express", level: 75, color: "from-gray-400 to-gray-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
       { name: "MongoDB", level: 65, color: "from-green-500 to-green-700", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+    ]
+  },
+  tools: {
+    title: "Development Tools",
+    skills: [
+      { name: "Git", level: 80, color: "from-orange-400 to-orange-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+      { name: "Docker", level: 65, color: "from-blue-400 to-blue-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+      { name: "VS Code", level: 90, color: "from-blue-500 to-blue-700", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
     ]
   }
 };
@@ -32,7 +42,7 @@ const SkillBar = ({ name, level, color, icon }) => {
   return (
     <motion.div 
       className="mb-6 bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-      whileHover={{ y: -5 }}
+      whileHover={{ scale: 1.02, y: -5 }}
     >
       <div className="flex items-center gap-3 mb-3">
         <img src={icon} alt={name} className="w-8 h-8" />
