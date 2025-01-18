@@ -8,7 +8,7 @@ const projectData = [
         id: 1,
         title: "Online food delivery website",
         description: "Online food delivery websites make ordering food easy with doorstep delivery and quick payment options. 🍕📱",
-        image: "src/assets/img/bur.png",
+        image: "public/bur.png",
         url: "https://vijayji45.github.io/myportpolio/food/food.html?fbclid=PAY2xjawH3GKhleHRuA2FlbQIxMAABptnkDR6w-Q6TL5MA0bLps5Gd5fQvO70yBZtTIp0hyIOvbDRfIhJWqdwDzg_aem_MH7N77XP31ycrlCvMDKeFg",
         tags: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
         features: [
@@ -22,7 +22,7 @@ const projectData = [
         id: 2,
         title: "GPC Itarsi Collage Website",
         description: "The GPC Itarsi website provides comprehensive information about the college, including courses, admissions, events, and updates, ensuring easy access for students and staff. 🌐🎓",
-        image: "src/assets/img/col.jpeg",
+        image: "public/col.jpeg",
         url: "https://magnificent-klepon-08efc5.netlify.app/",
         tags: ["HTML", "CSS", "JavaScript"],
         features: [
