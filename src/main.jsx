@@ -2,6 +2,7 @@ import { StrictMode, Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ThemeProvider } from './context/ThemeContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 // Lazy load components
 const ScrollProgress = lazy(() => import('./components/ScrollProgress'));
