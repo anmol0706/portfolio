@@ -1,6 +1,6 @@
 import React from 'react';
-import Laptop3D from './components/Laptop3D';
-import './styles/laptop.css';
+import Laptop3D from './Laptop3D';
+import '../styles/laptop.css';
 import { motion } from 'framer-motion';
 
 const projectData = [

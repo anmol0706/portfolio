@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import Laptop3D from './components/LaptopSkill';
+import Laptop3D from './LaptopSkill';
 
 const skillCategories = {
   frontend: {

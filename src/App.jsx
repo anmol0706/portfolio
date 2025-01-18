@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import "./css/App.css"
 import { motion, AnimatePresence } from 'framer-motion';
-import Nav from './Nav';
-import Home from './Home';
-import Skill from './Skill';
-import About from './About';
-import ProjectSection from './ProjectSection';
-import Contact from './contect';
+import Nav from './components/Nav';
+import Home from './components/Home';
+import Skill from './components/Skill';
+import About from './components/About';
+import ProjectSection from './components/ProjectSection';
+import Contact from './components/contect';
 import ScrollScene from './components/ScrollScene';
 
 const App = () => {
