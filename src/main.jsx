@@ -16,6 +16,25 @@ const Loading = () => (
   </div>
 );
 
+// Ensure image paths are correct and accessible
+const imagePath = (path) => process.env.PUBLIC_URL + path;
+
+// Example usage in components
+const About = () => (
+  <div>
+    <img src={imagePath('/images/about.jpg')} alt="About" />
+    {/* ...other content... */}
+  </div>
+);
+
+const Projects = () => (
+  <div>
+    <img src={imagePath('/images/project1.jpg')} alt="Project 1" />
+    <img src={imagePath('/images/project2.jpg')} alt="Project 2" />
+    {/* ...other content... */}
+  </div>
+);
+
 // Layout component to wrap common elements
 const Layout = ({ children }) => (
   <ThemeProvider>
