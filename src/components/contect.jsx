@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaTwitter, FaInstagram } from 'react-icons/fa';
 
 const Contact = () => {
@@ -8,11 +8,36 @@ const Contact = () => {
         email: '',
         message: ''
     });
+    const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
 
-    const handleSubmit = (e) => {
+    const validateForm = useCallback(() => {
+        const newErrors = {};
+        if (!formData.name.trim()) newErrors.name = 'Name is required';
+        if (!formData.email.trim()) newErrors.email = 'Email is required';
+        else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Invalid email';
+        if (!formData.message.trim()) newErrors.message = 'Message is required';
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    }, [formData]);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log('Form data:', formData);
+        if (!validateForm()) return;
+
+        setIsSubmitting(true);
+        try {
+            // Add your form submission logic here
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+            setSubmitStatus('success');
+            setFormData({ name: '', email: '', message: '' });
+        } catch (error) {
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e) => {
@@ -96,6 +121,18 @@ const Contact = () => {
                     <div>
                         <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Send a Message</h3>
                         <form onSubmit={handleSubmit} className="space-y-6">
+                            <AnimatePresence>
+                                {submitStatus === 'success' && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        className="p-4 bg-green-100 text-green-700 rounded"
+                                    >
+                                        Message sent successfully!
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                             <motion.div
                                 whileHover={{ scale: 1.01 }}
                                 transition={{ duration: 0.2 }}
@@ -112,6 +149,7 @@ const Contact = () => {
                                     className="block w-full rounded-lg border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-700/50 shadow-sm focus:border-purple-500 focus:ring-purple-500 p-3 transition-all duration-200"
                                     required
                                 />
+                                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                             </motion.div>
                             <motion.div
                                 whileHover={{ scale: 1.01 }}
@@ -129,6 +167,7 @@ const Contact = () => {
                                     className="block w-full rounded-lg border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-700/50 shadow-sm focus:border-purple-500 focus:ring-purple-500 p-3 transition-all duration-200"
                                     required
                                 />
+                                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                             </motion.div>
                             <motion.div
                                 whileHover={{ scale: 1.01 }}
@@ -146,14 +185,16 @@ const Contact = () => {
                                     className="block w-full rounded-lg border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-700/50 shadow-sm focus:border-purple-500 focus:ring-purple-500 p-3 transition-all duration-200"
                                     required
                                 ></textarea>
+                                {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                             </motion.div>
                             <motion.button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-white py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                                whileHover={{ scale: 1.02 }}
+                                disabled={isSubmitting}
+                                className={`w-full ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''} bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 text-white py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300`}
+                                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                             >
-                                Send Message
+                                {isSubmitting ? 'Sending...' : 'Send Message'}
                             </motion.button>
                         </form>
                     </div>

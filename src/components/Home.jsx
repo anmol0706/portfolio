@@ -1,32 +1,42 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import profileImage from '/public/pro.jpg'; // Add your image path here
+import { useRef, useMemo } from 'react';
 
-const FloatingShapes = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {[...Array(20)].map((_, i) => (
-      <motion.div
-        key={i}
-        className="absolute w-16 h-16 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full"
-        initial={{ 
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight
-        }}
-        animate={{
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          scale: [1, 1.2, 1],
-          rotate: [0, 180, 360]
-        }}
-        transition={{
-          duration: 20 + Math.random() * 10,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
-    ))}
-  </div>
-);
+const FloatingShapes = () => {
+  // Memoize shapes data
+  const shapes = useMemo(() => 
+    [...Array(20)].map((_, i) => ({
+      id: i,
+      initialX: Math.random() * window.innerWidth,
+      initialY: Math.random() * window.innerHeight,
+      duration: 20 + Math.random() * 10
+    })), []
+  );
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {shapes.map(({ id, initialX, initialY, duration }) => (
+        <motion.div
+          key={id}
+          className="absolute w-16 h-16 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full"
+          initial={{ x: initialX, y: initialY }}
+          animate={{
+            x: [initialX, initialX + 100, initialX],
+            y: [initialY, initialY + 100, initialY],
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360]
+          }}
+          transition={{
+            duration,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const SocialLinks = () => (
   <motion.div 
@@ -59,13 +69,18 @@ const Home = () => {
     projectsSection.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const contentRef = useRef(null);
+  const isInView = useInView(contentRef, { once: true });
+
   return (
     <motion.div 
       id="home"
+      ref={contentRef}
       className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      style={{
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+      }}
     >
       <FloatingShapes />
       <SocialLinks />
