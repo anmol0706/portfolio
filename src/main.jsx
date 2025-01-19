@@ -19,7 +19,7 @@ const Loading = () => (
 // Layout component to wrap common elements
 const Layout = ({ children }) => (
   <ThemeProvider>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <ScrollProgress />
       <BackToTop />
       {children}

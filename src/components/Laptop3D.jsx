@@ -34,7 +34,7 @@ const Laptop3D = ({ image, children, onLaptopClick }) => {
                 </div>
                 <div className="laptop-base" />
             </div>
-            <style jsx>{`
+            <style jsx="true">{`
                 .laptop-wrapper {
                     perspective: 1500px;
                     transform-style: preserve-3d;
