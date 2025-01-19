@@ -1,0 +1,1 @@
+import{u as s,j as o,m as t}from"./vendor-BiKLcoaO.js";const l=()=>{const{scrollYProgress:r}=s();return o.jsx(t.div,{className:"fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 transform origin-left z-50",style:{scaleX:r}})};export{l as default};
