@@ -3,13 +3,17 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from 'react-icons/fa';
 import SmartphoneSlideshow from './SmartphoneSlideshow';
 import { socialLinks } from '../data/socialLinks';
 import { skills } from '../data/skills';
+import pro1 from '/src/assets/img/pro1.jpg';
+import pro2 from '/src/assets/img/pro2.jpg';
+import pro3 from '/src/assets/img/pro3.jpg';
+import pro4 from '/src/assets/img/pro4.jpg';
 
 const About = () => {
     const images = [
-        'src/assets/img/Firefly 20250117130221.png',
-        'src/assets/img/WhatsApp Image 2025-01-17 at 13.43.15_e594c467.jpg',
-        'src/assets/img/WhatsApp Image 2025-01-17 at 13.43.24_f07011e5.jpg',
-        'src/assets/img/WhatsApp Image 2025-01-17 at 13.43.24_9b7180fd.jpg'
+        pro4,
+        pro2,
+        pro3,
+        pro1
     ];
 
     return (
