@@ -2,7 +2,6 @@ import { StrictMode, Suspense, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ThemeProvider } from './context/ThemeContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import { SpeedInsights } from "@vercel/speed-insights/react"
 
 // Lazy load components
 const ScrollProgress = lazy(() => import('./components/ScrollProgress'));
@@ -16,26 +15,7 @@ const Loading = () => (
   </div>
 );
 
-// Ensure image paths are correct and accessible
-const imagePath = (path) => process.env.PUBLIC_URL + path;
 
-// Example usage in components
-const About = () => (
-  <div>
-    <img src={imagePath('/images/about.jpg')} alt="About" />
-    {/* ...other content... */}
-  </div>
-);
-
-const Projects = () => (
-  <div>
-    <img src={imagePath('/images/project1.jpg')} alt="Project 1" />
-    <img src={imagePath('/images/project2.jpg')} alt="Project 2" />
-    {/* ...other content... */}
-  </div>
-);
-
-// Layout component to wrap common elements
 const Layout = ({ children }) => (
   <ThemeProvider>
     <Suspense fallback={<Loading />}>

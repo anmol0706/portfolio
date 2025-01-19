@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import profileImage from '/src/assets/img/pro.jpg'; // Add your image path here
+import profileImage from '/public/pro.jpg'; // Add your image path here
 
 const FloatingShapes = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">

@@ -3,10 +3,10 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from 'react-icons/fa';
 import SmartphoneSlideshow from './SmartphoneSlideshow';
 import { socialLinks } from '../data/socialLinks';
 import { skills } from '../data/skills';
-import pro1 from '/src/assets/img/pro1.jpg';
-import pro2 from '/src/assets/img/pro2.jpg';
-import pro3 from '/src/assets/img/pro3.jpg';
-import pro4 from '/src/assets/img/pro4.jpg';
+import pro1 from '/public/pro1.jpg';
+import pro2 from '/public/pro2.jpg';
+import pro3 from '/public/pro3.jpg';
+import pro4 from '/public/pro4.jpg';
 
 const About = () => {
     const images = [
